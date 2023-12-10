@@ -20,4 +20,8 @@ export class ProductsService {
   getProductsByCategory(keyword: any) {
     return this.http.get(environment.baseurl + 'products/category/' + keyword);
   }
+
+  getProductsById(id: any) {
+    return this.http.get(environment.baseurl + 'products/' + id);
+  }
 }
