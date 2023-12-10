@@ -9,7 +9,7 @@ import { ProductsService } from '../../services/products.service';
 export class AllProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
-
+  loading: boolean = false;
   // dependency injection to products service
   constructor(private service: ProductsService) {}
 
@@ -19,25 +19,31 @@ export class AllProductsComponent implements OnInit {
   }
 
   getProducts() {
+    this.loading = true;
     this.service.getAllProducts().subscribe(
       (result: any) => {
         this.products = result;
+        this.loading = false;
       },
       (error) => {
         alert(error);
+        this.loading = false;
       }
     );
   }
 
   getCategories() {
+    this.loading = true;
     this.service.getAllCategories().subscribe(
       (result: any) => {
         console.log(result);
 
         this.categories = result;
+        this.loading = false;
       },
       (error) => {
         alert(error);
+        this.loading = false;
       }
     );
   }
