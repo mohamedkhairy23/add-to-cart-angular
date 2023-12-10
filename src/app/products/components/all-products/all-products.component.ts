@@ -10,6 +10,7 @@ export class AllProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
   loading: boolean = false;
+
   // dependency injection to products service
   constructor(private service: ProductsService) {}
 
@@ -36,8 +37,6 @@ export class AllProductsComponent implements OnInit {
     this.loading = true;
     this.service.getAllCategories().subscribe(
       (result: any) => {
-        console.log(result);
-
         this.categories = result;
         this.loading = false;
       },
@@ -54,8 +53,10 @@ export class AllProductsComponent implements OnInit {
   }
 
   getCategoriesProducts(keyword: String) {
+    this.loading = true;
     this.service.getProductsByCategory(keyword).subscribe((result: any) => {
       this.products = result;
+      this.loading = false;
     });
   }
 }
