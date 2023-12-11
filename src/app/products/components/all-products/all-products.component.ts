@@ -10,7 +10,7 @@ export class AllProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
   loading: boolean = false;
-
+  cartProducts: any[] = [];
   // dependency injection to products service
   constructor(private service: ProductsService) {}
 
@@ -58,5 +58,23 @@ export class AllProductsComponent implements OnInit {
       this.products = result;
       this.loading = false;
     });
+  }
+
+  addToCart(event: any) {
+    if ('cart' in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
+      let existedItemInCartProducts = this.cartProducts.find(
+        (item) => item.id === event.id
+      );
+      if (existedItemInCartProducts) {
+        alert('Product is already in your cart');
+      } else {
+        this.cartProducts.push(event);
+        localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+      }
+    } else {
+      this.cartProducts.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    }
   }
 }
