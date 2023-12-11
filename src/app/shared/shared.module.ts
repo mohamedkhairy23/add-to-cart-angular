@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectComponent } from './components/select/select.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,19 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     SelectComponent,
     ProductItemComponent,
   ],
-  imports: [CommonModule, BrowserModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   exports: [
     HeaderComponent,
     SpinnerComponent,
     SelectComponent,
     ProductItemComponent,
+    FormsModule,
   ],
 })
 export class SharedModule {}
