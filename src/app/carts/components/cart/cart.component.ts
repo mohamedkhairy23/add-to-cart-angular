@@ -64,19 +64,21 @@ export class CartComponent implements OnInit {
   }
 
   addCart() {
-    let orderProducts = this.cartProducts.map((item) => {
-      return { productId: item.item.id, quantity: item.quantity };
-    });
-    let model = {
-      userId: 5,
-      date: new Date(),
-      products: orderProducts,
-    };
-    this.service.createNewCart(model).subscribe((result) => {
-      this.success = true;
-    });
-    this.cartProducts = [];
-    this.getCartTotal();
-    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    if (this.cartProducts.length > 0) {
+      let orderProducts = this.cartProducts.map((item) => {
+        return { productId: item.item.id, quantity: item.quantity };
+      });
+      let model = {
+        userId: 5,
+        date: new Date(),
+        products: orderProducts,
+      };
+      this.service.createNewCart(model).subscribe((result) => {
+        this.success = true;
+      });
+      this.cartProducts = [];
+      this.getCartTotal();
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    }
   }
 }

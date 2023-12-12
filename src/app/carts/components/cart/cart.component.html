@@ -58,7 +58,13 @@
         <th></th>
         <th>Total :{{ total | number : "1.0-2" }} LE</th>
         <th>
-          <button class="btn btn-success" (click)="addCart()">Order Now</button>
+          <button
+            class="btn btn-success"
+            (click)="addCart()"
+            [disabled]="cartProducts.length < 1"
+          >
+            Order Now
+          </button>
         </th>
       </tr>
     </tfoot>
