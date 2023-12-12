@@ -9,7 +9,7 @@ export class ProductItemComponent implements OnInit {
   @Input() data: any = {};
   @Output() item = new EventEmitter();
   addButton: boolean = false;
-  amount: number = 0;
+  amount: number = 1;
 
   constructor() {}
 
