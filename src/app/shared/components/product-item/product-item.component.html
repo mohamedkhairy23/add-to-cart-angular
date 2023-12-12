@@ -16,7 +16,7 @@
     </button>
     <div class="d-flex w-50 gap-1" *ngIf="addButton">
       <input type="number" class="form-control" min="1" [(ngModel)]="amount" />
-      <button class="btn btn-danger" (click)="add(); addButton = false">
+      <button class="btn btn-danger" (click)="addToCart(); addButton = false">
         Add
       </button>
     </div>
